@@ -31,16 +31,16 @@ export class App extends Component {
               .catch(error => alert(error))
         }
 
-        // if (prevState.numberOfPage < this.state.numberOfPage) {
-        //     fetch(`https://pixabay.com/api/?q=${this.state.searchValue}&page=${this.state.numberOfPage}&key=33577731-7b9b7bf07a9d841c486c320f5&image_type=photo&orientation=horizontal&per_page=12`)
-        //         .then(response => response.json())
-        //         // .then(data => this.setState(prevState => {
+        if (prevState.numberOfPage < this.state.numberOfPage) {
+            fetch(`https://pixabay.com/api/?q=${this.state.searchValue}&page=${this.state.numberOfPage}&key=33577731-7b9b7bf07a9d841c486c320f5&image_type=photo&orientation=horizontal&per_page=12`)
+                .then(response => response.json())
+                // .then(data => this.setState(prevState => {
                     
-        //         // return {images: [...prevState.images, ...data.hits] }
-        //         // }))
-        //       .then(data => this.setState({images: data.hits}))
-        //     .catch(error => alert(error))
-        // }
+                // return {images: [...prevState.images, ...data.hits] }
+                // }))
+              .then(data => this.setState({images: data.hits}))
+            .catch(error => alert(error))
+        }
 
         // if (this.state.images.length === 0) {
         //     alert('whoops, array clean')
