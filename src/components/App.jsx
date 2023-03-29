@@ -5,7 +5,7 @@ import { Oval } from 'react-loader-spinner';
 import { SearchBar } from './searchBar.js';
 import '../index.css';
 import ImageGallery from './imageGallery.js';
-import ImageGalleryItem from './imageGalleryItem.js';
+// import ImageGalleryItem from './imageGalleryItem.js';
 import LoadMoreBtn from './button.js';
 
 export class App extends Component {
