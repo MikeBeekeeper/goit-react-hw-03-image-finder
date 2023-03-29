@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 // import Modal from './modal.js';
 
 // export default class ImageGalleryItem extends Component {
@@ -48,5 +48,6 @@ const ImageGalleryItem = ({webformatURL,tags}) => {
 export default ImageGalleryItem
 
 ImageGalleryItem.propTypes = {
-  images: PropTypes.array,
+    webformatURL: PropTypes.string.isRequired,
+    tags: PropTypes.string.isRequired,
 };
