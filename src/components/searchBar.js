@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 import '../index.css';
@@ -9,17 +8,17 @@ export class SearchBar extends Component {
   };
 
   onSearchInputChange = e => {
-    this.setState({ inputValue: e.currentTarget.value});
+    this.setState({ inputValue: e.currentTarget.value });
   };
-    
-    handleSubmit = e => {
-        e.preventDefault()
-        if (this.state.inputValue.trim() === '') {
-            alert('Please enter request')
-            return
-        }
-        this.props.onSubmit(this.state.inputValue.toLowerCase())
-    };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.state.inputValue.trim() === '') {
+      alert('Please enter request');
+      return;
+    }
+    this.props.onSubmit(this.state.inputValue.toLowerCase());
+  };
 
   render() {
     const { inputValue } = this.state;
@@ -45,5 +44,3 @@ export class SearchBar extends Component {
     );
   }
 }
-
-

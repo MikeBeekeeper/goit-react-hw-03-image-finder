@@ -1,17 +1,16 @@
 import PropTypes from 'prop-types';
+import ImageGalleryItem from './imageGalleryItem.js';
 
-const ImageGallery = ({ children }) => {
-    return (
-        <ul>
-            {children}
-        </ul>
-    )
+const ImageGallery = ({ images, onClick }) => {
+  return (
+    <ul className="ImageGallery">
+      <ImageGalleryItem images={images} onClick={onClick} />
+    </ul>
+  );
 };
 
 export default ImageGallery;
 
-// ImageGallery.PropTypes = {
-//     children: PropTypes.array.isRequired
-// }
-
-
+ImageGallery.propTypes = {
+  images: PropTypes.array.isRequired,
+};

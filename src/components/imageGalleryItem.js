@@ -1,49 +1,42 @@
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
+import Modal from './modal.js';
 
- const ImageGalleryItem  = ({images}) => {
+export default class ImageGalleryItem extends Component {
+  state = {
+    showModal: false,
+  };
 
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.request !== this.props.request) {
-    //         fetch(`https://pixabay.com/api/?q=${this.props.request}&page=${this.props.pageNumber}&key=33577731-7b9b7bf07a9d841c486c320f5&image_type=photo&orientation=horizontal&per_page=12`)
-    //             .then(response => response.json())
-    //             .then(data => this.setState({ images: data.hits })) 
-    //         .catch(error => alert(error))
-    //     }
+  toggleModal = () => {
+    this.setState(prev => ({ showModal: !prev.showModal }));
+  };
 
-    //     if (prevProps.pageNumber !== this.props.pageNumber) {
-    //         fetch(`https://pixabay.com/api/?q=${this.props.request}&page=${this.props.pageNumber}&key=33577731-7b9b7bf07a9d841c486c320f5&image_type=photo&orientation=horizontal&per_page=12`)
-    //             .then(response => response.json())
-    //             .then(data => this.setState(prevState => {
-                    
-    //             return {images: [...prevState.images, ...data.hits] }
-    //             }))
-    //         .catch(error => alert(error))
-    //     }
+  render() {
+    return (
+      <>
+        {this.props.images.map(image => (
+          <li
+            className="ImageGalleryItem"
+            key={image.id}
+            onClick={this.toggleModal}
+          >
+            <img
+              className="ImageGalleryItem-image"
+              src={image.webformatURL}
+              alt={image.tags}
+            />
+            {this.state.showModal && (
+              <Modal onModalClick={this.toggleModal}>
+                <img src={image.webformatURL} alt={image.tags} />
+              </Modal>
+            )}
+          </li>
+        ))}
+      </>
+    );
+  }
+}
 
-    //     if (this.state.images.length === 0) {
-    //         alert('whoops, array clean')
-    //         return
-    //     }
-    // }
-    
-        return (
-    <ul>
-      {images.map(image => (
-        <li key={image.id}>
-          <img src={image.webformatURL} alt=""/>
-        </li>
-      ))}
-    </ul>
-  );
-    
-  
- };
-
- export default ImageGalleryItem
-
-
-
-// ImageGalleryItem.PropTypes = {
-//      images: PropTypes.array.isRequired,
-//  }
-
+ImageGalleryItem.propTypes = {
+  images: PropTypes.array.isRequired,
+};
