@@ -2,24 +2,29 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 
 class Modal extends Component {
-  hideModalClick(e) {
+  hideModalKeydown = e => {
     if (e.key === 'Escape') {
       this.props.onModalClick();
     }
-  }
+  };
+
+  hideModalClick = e => {
+    if (e.target.className === 'Overlay') {
+      this.props.onModalClick();
+    }
+  };
 
   componentDidMount() {
-    window.addEventListener('keydown', this.hideModalClick);
+    window.addEventListener('keydown', this.hideModalKeydown);
   }
-    
-    componentWillUnmount = () => {
-      window.removeEventListener('keydown', this.hideModalClick);
-    }
-    
+
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.hideModalKeydown);
+  }
 
   render() {
     return (
-        <div className="Overlay" onClick={this.props.onModalClick}>
+      <div className="Overlay" onClick={this.hideModalClick}>
         <div className="Modal">{this.props.children}</div>
       </div>
     );

@@ -90,9 +90,10 @@ img {
 
 .SearchForm-button {
   display: inline-block;
-  width: 48px;
+  width: 58px;
   height: 48px;
   border: 0;
+  padding: 5px;
   background-image: url('https://image.flaticon.com/icons/svg/149/149852.svg');
   background-size: 40%;
   background-repeat: no-repeat;
@@ -126,8 +127,8 @@ img {
   font-size: 20px;
   border: none;
   outline: none;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 14px;
+  padding-right: 14px;
 }
 
 .SearchForm-input::placeholder {

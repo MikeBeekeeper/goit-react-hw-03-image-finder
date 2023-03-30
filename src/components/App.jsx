@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Oval } from 'react-loader-spinner';
-// import { ToastContainer, toast } from 'react-toastify';
 import { SearchBar } from './searchBar.js';
 import '../index.css';
 import ImageGallery from './imageGallery.js';
-// import ImageGalleryItem from './imageGalleryItem.js';
 import LoadMoreBtn from './button.js';
 
 export class App extends Component {
@@ -66,9 +64,7 @@ export class App extends Component {
     return (
       <div className="App">
         <SearchBar onSubmit={this.onSearchSubmit} />
-        {images.length > 0 && (
-          <ImageGallery images={images}/>
-        )}
+        {images.length > 0 && <ImageGallery images={images} />}
         {this.state.images.length > 0 && !isLoading && (
           <LoadMoreBtn onClick={this.incrementNumberOfPage} />
         )}

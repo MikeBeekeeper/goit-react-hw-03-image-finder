@@ -7,30 +7,31 @@ export default class ImageGalleryItem extends Component {
     showModal: false,
   };
 
-    toggleModal = () => {
+  toggleModal = () => {
     this.setState(prev => ({ showModal: !prev.showModal }));
-    };
-    
+  };
 
   render() {
     return (
-          <li
-            className="ImageGalleryItem"
-            onClick={this.toggleModal}
-          >
-            <img className="ImageGalleryItem-image" src={this.props.webformatURL} alt={this.props.tags}/>
-            {this.state.showModal && (
-              <Modal onModalClick={this.toggleModal}>
-                <img src={this.props.largeImageURL} alt={this.props.tags} />
-              </Modal>
-            )}
-          </li>
+      <li className="ImageGalleryItem">
+        <img
+          className="ImageGalleryItem-image"
+          src={this.props.webformatURL}
+          alt={this.props.tags}
+          onClick={this.toggleModal}
+        />
+        {this.state.showModal && (
+          <Modal onModalClick={this.toggleModal}>
+            <img src={this.props.largeImageURL} alt={this.props.tags} />
+          </Modal>
+        )}
+      </li>
     );
   }
 }
 
 ImageGalleryItem.propTypes = {
-    webformatURL: PropTypes.string.isRequired,
-    tags: PropTypes.string.isRequired,
-    largeImageURL: PropTypes.string.isRequired,
+  webformatURL: PropTypes.string.isRequired,
+  tags: PropTypes.string.isRequired,
+  largeImageURL: PropTypes.string.isRequired,
 };
