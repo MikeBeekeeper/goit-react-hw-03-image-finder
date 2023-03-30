@@ -2,12 +2,16 @@ import PropTypes from 'prop-types';
 import ImageGalleryItem from './imageGalleryItem.js';
 
 const ImageGallery = ({ images }) => {
-    return (
-        <ul className="ImageGallery">
-            {images.map(image => (
-                <ImageGalleryItem key={image.id} webformatURL={image.webformatURL} tags={image.tags}/>
-            ))}
-      
+  return (
+    <ul className="ImageGallery">
+      {images.map(image => (
+        <ImageGalleryItem
+          key={image.id}
+          webformatURL={image.webformatURL}
+          tags={image.tags}
+          largeImageURL={image.largeImageURL}
+        />
+      ))}
     </ul>
   );
 };

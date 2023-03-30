@@ -1,12 +1,25 @@
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
-const Modal = ({ children, onModalClick }) => {
-  return (
-    <div className="Overlay" onClick={onModalClick}>
-      <div className="Modal">{children}</div>
-    </div>
-  );
-};
+class Modal extends Component {
+  hideModalClick(e) {
+    if (e.key === 'Escape') {
+      this.props.onModalClick();
+    }
+  }
+
+  componentDidMount() {
+    window.addEventListener('keydown', this.hideModalClick);
+  }
+
+  render() {
+    return (
+        <div className="Overlay" onClick={this.props.onModalClick}>
+        <div className="Modal">{this.props.children}</div>
+      </div>
+    );
+  }
+}
 
 export default Modal;
 
