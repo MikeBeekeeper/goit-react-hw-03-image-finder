@@ -14,6 +14,7 @@ export class App extends Component {
     numberOfPage: 1,
     isLoading: false,
     totalHits: 0,
+    error: false,
   };
 
   onSearchSubmit = value => {
@@ -41,7 +42,7 @@ export class App extends Component {
             totalHits: data.data.totalHits
           }))
         )
-        .catch(error => alert(error))
+        .catch(error => this.setState({error:true}))
     }
 
     if (prevState.numberOfPage < this.state.numberOfPage) {
@@ -57,16 +58,17 @@ export class App extends Component {
             };
           })
         )
-        .catch(error => alert(error))
+        .catch(error => this.setState({error:true}))
         .finally(()=>{this.setState({isLoading: false})})
     }
   }
 
   render() {
-    const { images, isLoading, totalHits } = this.state;
+    const { images, isLoading, totalHits, error } = this.state;
     return (
       <div className={css.App}>
         <SearchBar onSubmit={this.onSearchSubmit} />
+        {error && <h1>Please try again</h1>}
         {images.length > 0 && <ImageGallery images={images} />}
         {images.length > 0 && !isLoading && images.length < totalHits && (
           <LoadMoreBtn onClick={this.incrementNumberOfPage} />
