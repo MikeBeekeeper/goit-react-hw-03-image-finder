@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import css from '../button/button.module.css'
 
 const LoadMoreBtn = ({ onClick }) => {
   return (
-    <div className="Button-wrapper">
-      <button type="button" className="Button" onClick={onClick}>
+    <div className={css.ButtonWrapper}>
+      <button type="button" className={css.Button} onClick={onClick}>
         Load more
       </button>
     </div>

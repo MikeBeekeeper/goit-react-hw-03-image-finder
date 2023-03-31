@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import '../index.css';
+// import '../index.css';
+import css from '../searchBar/searchBar.module.css'
 
-export class SearchBar extends Component {
+export default class SearchBar extends Component {
   state = {
     inputValue: '',
   };
@@ -23,14 +24,14 @@ export class SearchBar extends Component {
     const { inputValue } = this.state;
 
     return (
-      <header className="Searchbar">
-        <form className="SearchForm" onSubmit={this.handleSubmit}>
-          <button type="submit" className="SearchForm-button">
-            <span className="button-label">Search</span>
+      <header className={css.Searchbar}>
+        <form className={css.SearchForm} onSubmit={this.handleSubmit}>
+          <button type="submit" className={css.SearchFormButton}>
+            <span className={css.buttonLabel}>Search</span>
           </button>
 
           <input
-            className="SearchForm-input"
+            className={css.SearchFormInput}
             value={inputValue}
             onChange={this.onSearchInputChange}
             type="text"

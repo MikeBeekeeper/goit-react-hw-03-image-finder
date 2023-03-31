@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
-import Modal from './modal.js';
+import Modal from '../modal/modal.js';
+import css from '../imageGalleryItem/imageGalleryItem.module.css'
 
 export default class ImageGalleryItem extends Component {
   state = {
@@ -13,9 +14,9 @@ export default class ImageGalleryItem extends Component {
 
   render() {
     return (
-      <li className="ImageGalleryItem">
+      <li className={css.ImageGalleryItem}>
         <img
-          className="ImageGalleryItem-image"
+          className={css.ImageGalleryItemImage}
           src={this.props.webformatURL}
           alt={this.props.tags}
           onClick={this.toggleModal}

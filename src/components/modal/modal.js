@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
+import css from '../modal/modal.module.css'
 
 class Modal extends Component {
   hideModalKeydown = e => {
@@ -9,7 +10,7 @@ class Modal extends Component {
   };
 
   hideModalClick = e => {
-    if (e.target.className === 'Overlay') {
+    if (e.target.className === 'modal_Overlay__rpLZC') {
       this.props.onModalClick();
     }
   };
@@ -24,8 +25,8 @@ class Modal extends Component {
 
   render() {
     return (
-      <div className="Overlay" onClick={this.hideModalClick}>
-        <div className="Modal">{this.props.children}</div>
+      <div className={css.Overlay} onClick={this.hideModalClick}>
+        <div className={css.Modal}>{this.props.children}</div>
       </div>
     );
   }

@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Oval } from 'react-loader-spinner';
-import { SearchBar } from './searchBar.js';
-import '../index.css';
-import ImageGallery from './imageGallery.js';
-import LoadMoreBtn from './button.js';
+import  SearchBar  from './searchBar/searchBar.js';
+// import '../index.css';
+import ImageGallery from './imageGallery/imageGallery.js';
+import LoadMoreBtn from './button/button.js';
+import css from './app.module.css'
 
 export class App extends Component {
   state = {
@@ -12,6 +13,7 @@ export class App extends Component {
     searchValue: '',
     numberOfPage: 1,
     isLoading: false,
+    totalHits: 0,
   };
 
   onSearchSubmit = value => {
@@ -26,19 +28,21 @@ export class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchValue !== this.state.searchValue) {
-      this.setState({ isLoading: true });
+      this.setState({ isLoading: true})
       return axios
         .get(
-          `https://pixabay.com/api/?q=${this.state.searchValue}&page=${this.state.numberOfPage}&key=33577731-7b9b7bf07a9d841c486c320f5&image_type=photo&orientation=horizontal&per_page=12`
+          `https://pixabay.com/api/?q=${this.state.searchValue}&page=1&key=33577731-7b9b7bf07a9d841c486c320f5&image_type=photo&orientation=horizontal&per_page=12`
         )
         .then(data =>
           this.setState(prev => ({
             ...prev,
             images: data.data.hits,
             isLoading: false,
+            totalHits: data.data.totalHits
           }))
         )
-        .catch(error => alert(error));
+        .catch(error => alert(error))
+        .finally(()=>{this.setState({numberOfPage: 1})})
     }
 
     if (prevState.numberOfPage < this.state.numberOfPage) {
@@ -51,21 +55,21 @@ export class App extends Component {
           this.setState(prevState => {
             return {
               images: [...prevState.images, ...data.data.hits],
-              isLoading: false,
             };
           })
         )
-        .catch(error => alert(error));
+        .catch(error => alert(error))
+        .finally(()=>{this.setState({isLoading: false})})
     }
   }
 
   render() {
-    const { images, isLoading } = this.state;
+    const { images, isLoading, totalHits } = this.state;
     return (
-      <div className="App">
+      <div className={css.App}>
         <SearchBar onSubmit={this.onSearchSubmit} />
         {images.length > 0 && <ImageGallery images={images} />}
-        {this.state.images.length > 0 && !isLoading && (
+        {images.length > 0 && !isLoading && images.length < totalHits && (
           <LoadMoreBtn onClick={this.incrementNumberOfPage} />
         )}
         {isLoading && (
