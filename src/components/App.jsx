@@ -28,7 +28,7 @@ export class App extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.searchValue !== this.state.searchValue) {
-      this.setState({ isLoading: true})
+      this.setState({ isLoading: true, numberOfPage: 1})
       return axios
         .get(
           `https://pixabay.com/api/?q=${this.state.searchValue}&page=1&key=33577731-7b9b7bf07a9d841c486c320f5&image_type=photo&orientation=horizontal&per_page=12`
@@ -42,7 +42,6 @@ export class App extends Component {
           }))
         )
         .catch(error => alert(error))
-        .finally(()=>{this.setState({numberOfPage: 1})})
     }
 
     if (prevState.numberOfPage < this.state.numberOfPage) {

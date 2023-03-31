@@ -10,7 +10,7 @@ class Modal extends Component {
   };
 
   hideModalClick = e => {
-    if (e.target.className === 'modal_Overlay__rpLZC') {
+    if (e.target.dataset.action === 'overlay') {
       this.props.onModalClick();
     }
   };
@@ -25,7 +25,7 @@ class Modal extends Component {
 
   render() {
     return (
-      <div className={css.Overlay} onClick={this.hideModalClick}>
+      <div className={css.Overlay} onClick={this.hideModalClick} data-action="overlay">
         <div className={css.Modal}>{this.props.children}</div>
       </div>
     );
